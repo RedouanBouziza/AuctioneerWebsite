@@ -1,10 +1,10 @@
 <template>
-<div>Welcome</div>
+<div> Navbar</div>
 </template>
 
 <script>
 export default {
-  name: "WelcomeVue"
+  name: "NavbarVue"
 }
 </script>
 
