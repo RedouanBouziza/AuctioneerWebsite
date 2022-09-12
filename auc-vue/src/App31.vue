@@ -1,7 +1,7 @@
 <template>
   <HeaderVue></HeaderVue>
-  <WelcomeVue></WelcomeVue>
   <NavbarVue></NavbarVue>
+  <WelcomeVue></WelcomeVue>
 </template>
 
 <script>
