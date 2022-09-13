@@ -109,4 +109,21 @@ a {
 
 }
 
+@media only screen and (max-width: 768px) {
+  .flexbox-container{
+    flex-direction: column;
+  }
+  .left[data-v-d4b7673c] {
+    background-image: linear-gradient(to right, #7F00FF, #E0B0FF);
+    width: 500px;
+  }
+  .right[data-v-d4b7673c] {
+    background-image: linear-gradient(to left, #7F00FF, #E0B0FF);
+    width: 500px;
+    font-family: Arial, "Times New Roman";
+    font-size: 15px;
+  }
+
+}
+
 </style>

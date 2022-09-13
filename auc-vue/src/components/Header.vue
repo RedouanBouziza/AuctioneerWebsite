@@ -45,12 +45,12 @@ p {
 
 .flexbox-container {
   display: flex;
+  /*box-shadow: 4px 4px #CF9FFF;*/
 }
 
 .flexbox-item {
   min-height: 120px;
   margin: 10px;
-  box-shadow: 4px 4px #CF9FFF;
 }
 
 .imgLeft {
@@ -87,5 +87,18 @@ p {
   max-width: 400px;
   height: auto;
 }
-
+@media only screen and (max-width: 768px) {
+  .title[data-v-61dd7a3d] {
+    -webkit-text-decoration-color: antiquewhite;
+    text-decoration-color: antiquewhite;
+    width: 358px;
+    background-color: #F98B88;
+  }
+  .sub-title[data-v-61dd7a3d] {
+    width: 361px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #F98B88;
+  }
+}
 </style>
