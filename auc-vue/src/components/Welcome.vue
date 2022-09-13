@@ -68,7 +68,7 @@ export default {
 
 .column {
   width: 100%;
-  height: 50%;
+  height: 20%;
 }
 
 p {
@@ -105,7 +105,7 @@ a {
   background-image: linear-gradient(to left, #7F00FF, #E0B0FF);
   width: 800px;
   font-family: Arial, "Times New Roman";
-  font-size: 20px;
+  font-size: 15px;
 
 }
 
