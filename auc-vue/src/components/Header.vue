@@ -55,17 +55,18 @@ p {
 
 .imgLeft {
   justify-content: center;
+  height: auto;
   width: 300px;
 }
 
 .title {
   text-decoration-color: antiquewhite;
-  width: 1200px;
+  width: 800px;
   background-color: #F98B88;
 }
 
 .sub-title {
-  width: 1200px;
+  width: 800px;
   display: flex;
   justify-content: flex-end;
   background-color: #F98B88;

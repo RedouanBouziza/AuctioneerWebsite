@@ -62,7 +62,7 @@ export default {
 
 .responsive {
   width: 100%;
-  max-width: 250px;
+  max-width: 150px;
   max-height: 300px;
 }
 
