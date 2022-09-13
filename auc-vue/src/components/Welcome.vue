@@ -53,7 +53,7 @@ export default {
 }
 
 .flexbox-item {
-  height: 700px;
+  height: 500px;
   flex-grow: 0;
   width: 100%;
   padding: 10px;
@@ -98,7 +98,7 @@ a {
 }
 
 .center {
-
+  align-content: center;
 }
 
 .right {
