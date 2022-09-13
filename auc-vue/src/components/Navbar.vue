@@ -12,8 +12,12 @@
       </div>
     </div>
     <a href="#news">My Account</a>
-    <a href="#news">Signup</a>
-    <a href="#news">Login</a>
+    <div class="signup">
+      <a href="#signup">Signup</a>
+    </div>
+    <div class="login">
+      <a href="#login">Login</a>
+    </div>
   </div>
 </template>
 
@@ -44,6 +48,16 @@ body {
 
 .dropdown {
   float: left;
+  overflow: hidden;
+}
+
+.login {
+  float: right;
+  overflow: hidden;
+}
+
+.signup {
+  float: right;
   overflow: hidden;
 }
 
