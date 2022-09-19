@@ -68,8 +68,6 @@
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-
-
     background-color: #F98B88;
     font-family: Arial, "Times New Roman";
     text-align: right;
@@ -82,10 +80,11 @@
 
 .date-title{
     margin-right: auto;
+    font-size: 20px;
+
 }
 
 .text-title{
-
 }
 
 

@@ -12,7 +12,7 @@
       </div>
       <div class="sub-title">
         <div class="date-title">
-          <p>Today is</p>
+          <p>Today is: {{getDate()}}</p>
         </div>
         <div class="text-title">
           <p>Offered to you by hva.nl</p>
@@ -30,7 +30,17 @@
 <!------------------------------------------------------- HTML -------------------------------------------------------->
 
 <script>
-export default { name: "HeaderVue" }
+export default { name: "HeaderVue",
+                  methods: {
+                    getDate() {
+                      var today = new Date();
+                      var options = { weekday: 'long', month: 'long',year: 'numeric', day: 'numeric' };
+                      return today.toLocaleDateString("en-US", options);
+                    }
+                  }
+}
+
+
 </script>
 
 <style scoped>
