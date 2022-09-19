@@ -1,104 +1,33 @@
+<!------------------------------------------------------- HTML -------------------------------------------------------->
 <template>
   <div class="flexbox-container">
-    <div class="flexbox-item imgLeft">
-      <img src="../assets/imgLeft.jpeg" class="responsive">
+
+    <div class="flexbox-item flexbox-item-1">
+      <img class="leftPic" src="../assets/imgLeft.jpeg">
     </div>
-    <div class="textTitle">
-      <div class="flexbox-item title">
+
+    <div class="flexbox-item flexbox-item-2">
+      <div class="title">
         <h1>The Auctioneer</h1>
       </div>
-      <div class="flexbox-item sub-title">
+      <div class="sub-title">
         <p>Offered to you by hva.nl</p>
       </div>
     </div>
-    <div class="flexbox-item imgRight">
-      <img src="../assets/imgRight.jpeg" class="responsive">
+
+    <div class="flexbox-item flexbox-item-3">
+      <img src="../assets/imgRight.jpeg" class="rightPic">
     </div>
+
   </div>
+
 </template>
+<!------------------------------------------------------- HTML -------------------------------------------------------->
 
 <script>
-export default {
-  name: "HeaderVue"
-}
+export default { name: "HeaderVue" }
 </script>
 
 <style scoped>
-
-h1 {
-  font-family: Arial, "Times New Roman";
-  text-align: center;
-  font-size: 50px;
-  font-weight: 100;
-  text-shadow: 2px 2px #7F00FF;
-  color: 	white;
-}
-
-p {
-  font-family: Arial, "Times New Roman";
-  text-align: right;
-  font-size: 30px;
-  font-weight: 100;
-  text-shadow: 2px 2px #7F00FF;
-  color: 	white;
-}
-
-.flexbox-container {
-  display: flex;
-  /*box-shadow: 4px 4px #CF9FFF;*/
-}
-
-.flexbox-item {
-  min-height: 120px;
-  margin: 10px;
-}
-
-.imgLeft {
-  justify-content: center;
-  height: auto;
-  width: 300px;
-}
-
-.title {
-  text-decoration-color: antiquewhite;
-  width: 800px;
-  background-color: #F98B88;
-}
-
-.sub-title {
-  width: 800px;
-  display: flex;
-  justify-content: flex-end;
-  background-color: #F98B88;
-}
-
-.imgRight {
-  width: 300px;
-}
-
-.textTitle {
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-}
-
-.responsive {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-}
-@media only screen and (max-width: 768px) {
-  .title[data-v-61dd7a3d] {
-    -webkit-text-decoration-color: antiquewhite;
-    text-decoration-color: antiquewhite;
-    width: 358px;
-    background-color: #F98B88;
-  }
-  .sub-title[data-v-61dd7a3d] {
-    width: 361px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #F98B88;
-  }
-}
+@import '../css/Header.css';
 </style>

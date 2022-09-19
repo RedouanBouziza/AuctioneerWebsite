@@ -36,6 +36,7 @@ body {
   font-family: Arial, "Times New Roman";
   overflow: hidden;
   background-color: #F98B88;
+  display: block;
 }
 
 .navbar a {
