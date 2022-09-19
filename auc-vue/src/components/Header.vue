@@ -11,7 +11,12 @@
         <h1>The Auctioneer</h1>
       </div>
       <div class="sub-title">
-        <p>Offered to you by hva.nl</p>
+        <div class="date-title">
+          <p>Today is</p>
+        </div>
+        <div class="text-title">
+          <p>Offered to you by hva.nl</p>
+        </div>
       </div>
     </div>
 
