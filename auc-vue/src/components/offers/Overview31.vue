@@ -16,11 +16,12 @@
         <td>{{ offer.title }}</td>
         <td>{{ offer.status }}</td>
         <td>{{ offer.description}}</td>
-        <td v-if="offer.status === 'NEW' ? '' :offer ">{{ offer.status }}</td>
+        <td v-if="offer.status === 'NEW' ? '' :offer ">{{ offer.sellDate }}</td>
         <td v-else>0</td>
         <td>{{ offer.valueHighestBid + " €"}}</td>
       </tr>
     </table>
+    <button @click="newOffer" class="offerButton"> New Offer</button>
   </div>
 
 </template>
@@ -30,6 +31,11 @@ import {Offer} from "@/models/offer.js";
 
 export default {
   name: "Overview31",
+  methods: {
+    newOffer(){
+      this.offers.push(Offer.createSampleOffer(this.lastUsedId))
+    }
+  },
   data() {
     return {
       offers: [],
@@ -48,5 +54,39 @@ export default {
 </script>
 
 <style scoped>
+.offer-table{
+  flex: 4;
+  flex-wrap: wrap;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+th {
+  background-color: darkgoldenrod;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+button.offerButton{
+  flex: 1;
+  flex-wrap: wrap;
+  float: right;
+  background-color: yellow;
+  color: red;
+  border-color: yellow;
+}
 </style>
