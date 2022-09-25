@@ -15,7 +15,7 @@ export class Offer {
         this.valueHighestBid = Offer.valueHighestBid;
     }
 
-    static createSampleOffer(pId = 0) {
+    static createSampleOffer(pId) {
 
         this.title = Math.random().toString(36).slice(4)
         let randomNumber = Math.floor(Math.random() * 9);
@@ -45,8 +45,18 @@ export class Offer {
 
         this.valueHighestBid = Math.floor(Math.random() * 1000);
 
-        return Object.assign(new Offer(), this.id, this.title, this.status,
-            this.description, this.sellDate, this.valueHighestBid)
+        return new Offer(pId, this.title, this.status, this.description, this.sellDate, this.valueHighestBid)
+    }
+
+    static StatusEnum = {
+        NEW: 'NEW',
+        FOR_SALE: 'FOR_SALE',
+        SOLD: 'SOLD',
+        PAID: 'PAID',
+        DELIVERED: 'DELIVERED',
+        CLOSED: 'CLOSED',
+        EXPIRED: 'EXPIRED',
+        WITHDRAWN: 'WITHDRAWN'
     }
 
 }
