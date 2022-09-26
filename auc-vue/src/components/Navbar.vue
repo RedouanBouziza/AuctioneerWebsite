@@ -7,10 +7,9 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <router-link to="/offers/overview31" exact-active-class="onpage" >Overview 31</router-link>
-        <router-link class="menu-link" to="/offers/overview32" exact-active-class="onpage">Overview 32</router-link>
-        <a href="#">Active</a>
-        <a href="#">History</a>
+        <router-link to="/offers/overview31" exact-active-class="onpage" >All Offers overview</router-link>
+        <router-link class="menu-link" to="/offers/overview32" exact-active-class="onpage">Offers details (comp)</router-link>
+        <router-link class="menu-link" to="/offers/overview33" exact-active-class="onpage">Offers edit (router)</router-link>
       </div>
     </div>
     <a href="#news">My Account</a>
