@@ -1,12 +1,14 @@
 <template>
   <div class="navbar">
-    <a href="#home">Home</a>
+    <router-link active-class="onpage" to="/home">Home</router-link>
     <a href="#news">My Offers</a>
     <div class="dropdown">
       <button class="dropbtn">My Bids
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
+        <router-link to="/offers/overview31" exact-active-class="onpage" >Overview 31</router-link>
+        <router-link class="menu-link" to="/offers/overview32" exact-active-class="onpage">Overview 32</router-link>
         <a href="#">Active</a>
         <a href="#">History</a>
       </div>
