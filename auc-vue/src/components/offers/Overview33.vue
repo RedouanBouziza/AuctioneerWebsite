@@ -7,7 +7,7 @@
           <th>Title:</th>
         </tr>
         <tr class="show" v-on:click="onSelect(offer)" v-for="(offer) in offers" :key="offer.id" @click.prevent="selectOffer(offer.title)"
-            :class="{ selected: offer === selectedOffer } ">
+            :class="{ highlight: offer === this.getSelectedOffer() } ">
           <td> {{ offer.id }}</td>
           <td> {{ offer.title }}</td>
         </tr>
