@@ -45,7 +45,7 @@ export default {
   },
   watch: {
     '$route'() {
-      // extracts the selected book-id from the route, each time when the route has changed
+      // extracts the selected offer-id from the route, each time when the route has changed
       this.selectedOffer = this.findSelectedFromRouteParams(this.$route?.params?.id);
     }
   },
