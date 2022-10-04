@@ -78,8 +78,12 @@ export default {
     },
 
     deleteOffer(title) {
+      let parentPath = this.$route?.fullPath.replace(new RegExp("/\\d*$"), '');
+
       this.offers = this.offers.filter(offer => offer.title !== title)
       this.selectedOffer = null
+
+      this.$router.push(parentPath + "/");
     },
 
     findSelectedFromRouteParams(id) {
