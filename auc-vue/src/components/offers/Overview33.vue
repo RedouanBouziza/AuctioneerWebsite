@@ -6,10 +6,11 @@
           <th>id:</th>
           <th>Title:</th>
         </tr>
-        <tr class="show" v-on:click="onSelect(offer)" v-for="(offer) in offers" :key="offer.id" @click.prevent="selectOffer(offer.title)"
-            :class="{ highlight: offer === this.getSelectedOffer() } ">
+        <tr class="show" v-on:click="onSelect(offer)" v-for="(offer) in offers" :key="offer.id" @click.prevent="selectOffer(offer.title)" :class="{ highlight: offer === this.getSelectedOffer() } ">
+
           <td> {{ offer.id }}</td>
           <td> {{ offer.title }}</td>
+
         </tr>
       </table>
       <button class="add-offer" @click="onNewOffer">New Offer</button>
@@ -70,10 +71,8 @@ export default {
       let parentPath = this.$route?.fullPath.replace(new RegExp("/\\d*$"), '');
       if (offer != null && offer !== this.selectedOffer) {
         this.$router.push(parentPath + "/" + offer.id);
-        // this.$router.push(this.$router.matched[0].path + "/" + offer.id);
       } else if (this.selectedOffer != null) {
         this.$router.push(parentPath);
-        // this.$router.push(('/offers/overview33/' + offer.id));
       }
     },
 

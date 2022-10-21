@@ -15,6 +15,18 @@ export class Offer {
         this.valueHighestBid = Offer.valueHighestBid;
     }
 
+    static copyConstructor(offer){
+        if(offer === null || offer === undefined) return null;
+        let copy = Object.assign(new Offer(0), offer);
+
+        copy.title = offer.title;
+        copy.status = offer.status;
+        copy.description = offer.description;
+        copy.sellDate = new Date().toISOString().slice(0, 10);
+        copy.valueHighestBid = offer.valueHighestBid;
+        return copy
+    }
+
     static createSampleOffer(pId) {
 
         this.title = Math.random().toString(36).slice(4)

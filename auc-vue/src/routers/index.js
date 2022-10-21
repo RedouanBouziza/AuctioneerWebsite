@@ -15,7 +15,7 @@ const routes = [
     { path: '/offers/overview33', component: Overview33, children:[{
             path:':id', component: Detail33
         }]},
-    { path: '/scooters/overview34', component: Overview34, children:[{
+    { path: '/offers/overview34', component: Overview34, children:[{
             path:':id', component: Detail34
         }]},
     {path: '/', redirect: '/home'},
@@ -24,6 +24,7 @@ const routes = [
 
 
 export const router = createRouter({
+
     history:createWebHashHistory(),
     routes
 })

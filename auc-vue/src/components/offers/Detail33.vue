@@ -6,7 +6,8 @@
 
       <label class="labelTwo" for="form_status">Status</label>
       <select id="form_status" v-model="selectedOffer.status" >
-        <option v-for="status in statusValues" :value="status" :key="status" :selected="status === selectedOffer.status ? 'true' : 'false'"> {{status}}</option>
+        <option v-for="status in statusValues" :value="status" :key="status"
+                :selected="status === selectedOffer.status ? 'true' : 'false'"> {{status}}</option>
       </select>
       <br>
 
@@ -22,7 +23,8 @@
     </form>
   </div>
   <div>
-    <button class="deleteButton" v-if="selectedOffer" @click="$emit('delete-offer', selectedOffer.title)">Delete </button>
+    <button class="deleteButton" v-if="selectedOffer"
+            @click="$emit('delete-offer', selectedOffer.title)">Delete </button>
   </div>
 </template>
 
@@ -74,19 +76,19 @@ export default {
 }
 
 .labelOne{
-  margin-right: 110px;
+  margin-right: 103px;
 }
 
 .labelTwo{
-  margin-right: 97px;
+  margin-right: 93px;
 }
 
 .labelThree{
-  margin-right: 59px;
+  margin-right: 58px;
 }
 
 .labelFour{
-  margin-right: 77px;
+  margin-right: 73px;
 }
 
 .labelFive{
