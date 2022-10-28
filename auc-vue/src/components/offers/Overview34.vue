@@ -83,11 +83,14 @@ export default {
       }
     },
 
-    saveOffer(offer){
-      let index = this.offers.findIndex(currentOffer => currentOffer.id === offer.id);
-      this.offers[index] = offer;
-      this.selectedOffer = offer;
-      console.log("save offer regel 103")
+    saveOffer(copyOffer){
+      let index = this.offers.findIndex(currentOffer => currentOffer.id === copyOffer.id);
+      this.offers[index] = copyOffer;
+      this.selectedOffer.title = copyOffer.title;
+      this.selectedOffer.status = copyOffer.status;
+      this.selectedOffer.description = copyOffer.description;
+      this.selectedOffer.sellDate = copyOffer.sellDate;
+      this.selectedOffer.valueHighestBid = copyOffer.valueHighestBid;
     },
 
     findSelectedFromRouteParams(route) {
