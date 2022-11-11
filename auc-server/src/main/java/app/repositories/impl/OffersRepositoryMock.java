@@ -3,14 +3,9 @@ package app.repositories.impl;
 import app.models.Offer;
 import app.repositories.OffersRepository;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ThreadLocalRandom;
+import java.time.Period;
+import java.util.*;
 
 public class OffersRepositoryMock implements OffersRepository {
 
@@ -20,12 +15,13 @@ public class OffersRepositoryMock implements OffersRepository {
 
         double min = 0.0;
         double max = 50.0;
+        Date randomDate = new Date();
 
         // create random String
         final String title = UUID.randomUUID().toString().substring(0, 10);
         final String description = "Some Article Sold at 202";
+        final LocalDate sellDate = LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
         final double valueHighestBid = (Math.random() * ((max - min) + 1)) + min;
-        final Date sellDate =  Math.floor(Math.random() * ());
 
         return new Offer(id, title, description, sellDate, getRandomStatus(), valueHighestBid);
     }

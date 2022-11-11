@@ -1,6 +1,7 @@
 package app.models;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Offer {
@@ -8,7 +9,7 @@ public class Offer {
     private String id;
     private String title;
     private String description;
-    private Date sellDate;
+    private LocalDate sellDate;
     private Status status;
     private double valueHighestBid;
 
@@ -16,7 +17,7 @@ public class Offer {
         FOR_SALE, WITHDRAWN, NEW
     }
 
-    public Offer(String id, String title, String description, Date sellDate, Status status, double valueHighestBid) {
+    public Offer(String id, String title, String description, LocalDate sellDate, Status status, double valueHighestBid) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -41,7 +42,7 @@ public class Offer {
         return description;
     }
 
-    public Date getSellDate() {
+    public LocalDate getSellDate() {
         return sellDate;
     }
 
