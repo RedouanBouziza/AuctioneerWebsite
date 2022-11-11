@@ -2,11 +2,13 @@ package app.repositories.impl;
 
 import app.models.Offer;
 import app.repositories.OffersRepository;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
 
+@Component
 public class OffersRepositoryMock implements OffersRepository {
 
     private List<Offer> offerList = new ArrayList<>();
