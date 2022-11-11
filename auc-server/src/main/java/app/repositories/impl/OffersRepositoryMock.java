@@ -15,7 +15,13 @@ public class OffersRepositoryMock implements OffersRepository {
 
     private List<Offer> offerList = new ArrayList<>();
 
-    public Offer createSampleOffer(String s) {
+    public OffersRepositoryMock() {
+        for (int i = 0; i < 7; i++) {
+            offerList.add(createSampleOffer(UUID.randomUUID().toString()));
+        }
+    }
+
+    public static Offer createSampleOffer(String s) {
 
         double min = 0.0;
         double max = 50.0;
@@ -29,7 +35,7 @@ public class OffersRepositoryMock implements OffersRepository {
         return new Offer(id, title, description, sellDate, getRandomStatus(), valueHighestBid);
     }
 
-    private Offer.Status getRandomStatus() {
+    private static Offer.Status getRandomStatus() {
         double randomNumber = Math.floor(Math.random() * 9);
         // change status
         if (randomNumber < 3) {
@@ -42,10 +48,7 @@ public class OffersRepositoryMock implements OffersRepository {
 
     @Override
     public List<Offer> findAll() {
-        for (int i = 0; i < 7; i++) {
-            offerList.add(createSampleOffer(UUID.randomUUID().toString()));
-        }
-        return offerList;
+        return this.offerList;
     }
 
     @Override
