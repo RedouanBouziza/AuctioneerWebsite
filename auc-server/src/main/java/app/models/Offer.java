@@ -13,7 +13,7 @@ public class Offer {
     private double valueHighestBid;
 
     public enum Status{
-        IDLE, IN_USE, MAINTENANCE
+        FOR_SALE, WITHDRAWN, NEW
     }
 
     public Offer(String id, String title, String description, Date sellDate, Status status, double valueHighestBid) {
