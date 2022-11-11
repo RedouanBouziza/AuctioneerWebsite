@@ -8,4 +8,10 @@ import java.util.List;
 @Repository
 public interface OffersRepository {
     public List<Offer> findAll();
+
+    Offer findById(long id);
+
+    Offer save(Offer offer);
+
+    void deleteById(long id);
 }

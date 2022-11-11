@@ -7,19 +7,20 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
 public class OffersRepositoryMock implements OffersRepository {
 
     private List<Offer> offerList = new ArrayList<>();
 
-    public Offer createSampleOffer(String id) {
+    public Offer createSampleOffer(String s) {
 
         double min = 0.0;
         double max = 50.0;
-        Date randomDate = new Date();
 
-        // create random String
+        final long id = (long) Math.floor(Math.random() * (3000 - 1 + 1));
         final String title = UUID.randomUUID().toString().substring(0, 10);
         final String description = "Some Article Sold at 202";
         final LocalDate sellDate = LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
@@ -46,4 +47,31 @@ public class OffersRepositoryMock implements OffersRepository {
         }
         return offerList;
     }
+
+    @Override
+    public Offer findById(long id) {
+        return this.offerList.stream().filter(offer -> Objects.equals(offer.getId(), id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public Offer save(Offer offer) {
+        int index = IntStream.range(0, this.offerList.size()).
+                filter(i -> Objects.equals(offer.getId(), this.offerList.get(i).getId())).
+                findFirst().orElse(-1);
+
+        if (index > -1){
+            this.offerList.set(index, offer);
+        } else {
+            this.offerList.add(offer);
+        }
+
+        return offer;
+    }
+
+    @Override
+    public void deleteById(long id) {
+        this.offerList = this.offerList.stream().filter(scooter -> !(Objects.equals(scooter.getId(), id))).collect(Collectors.toList());
+    }
+
+
 }

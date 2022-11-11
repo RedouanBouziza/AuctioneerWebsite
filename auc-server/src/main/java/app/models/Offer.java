@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Offer {
 
-    private String id;
+    private long id;
     private String title;
     private String description;
     private LocalDate sellDate;
@@ -17,7 +17,7 @@ public class Offer {
         FOR_SALE, WITHDRAWN, NEW
     }
 
-    public Offer(String id, String title, String description, LocalDate sellDate, Status status, double valueHighestBid) {
+    public Offer(long id, String title, String description, LocalDate sellDate, Status status, double valueHighestBid) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -26,11 +26,11 @@ public class Offer {
         this.valueHighestBid = valueHighestBid;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
