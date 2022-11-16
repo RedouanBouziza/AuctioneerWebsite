@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface OffersRepository {
-    public List<Offer> findAll();
+    List<Offer> findAll();
 
     Offer findById(long id);
 
