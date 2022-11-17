@@ -1,15 +1,21 @@
 package app.models;
 
 
+import app.views.ViewClasses;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.time.LocalDate;
 import java.util.Date;
 
 public class Offer {
 
+    @JsonView(ViewClasses.Summary.class)
     private long id;
+    @JsonView(ViewClasses.Summary.class)
     private String title;
     private String description;
     private LocalDate sellDate;
+    @JsonView(ViewClasses.Summary.class)
     private Status status;
     private double valueHighestBid;
 

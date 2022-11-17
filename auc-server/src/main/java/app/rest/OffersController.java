@@ -4,6 +4,7 @@ import app.exceptions.PreConditionFailed;
 import app.exceptions.ResourceNotFoundException;
 import app.models.Offer;
 import app.repositories.OffersRepository;
+import app.views.ViewClasses;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
@@ -81,7 +82,7 @@ public class OffersController {
         offersRepository.deleteById(id);
     }
 
-//    @JsonView(Offer.Offer.class)
+    @JsonView(ViewClasses.Summary.class)
     @GetMapping("/summary")
     public MappingJacksonValue getOffersSummary() {
         List<Offer> offers = offersRepository.findAll();
