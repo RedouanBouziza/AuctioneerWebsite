@@ -4,7 +4,12 @@ import app.exceptions.PreConditionFailed;
 import app.exceptions.ResourceNotFoundException;
 import app.models.Offer;
 import app.repositories.OffersRepository;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -59,12 +64,9 @@ public class OffersController {
         Offer findOffer = offersRepository.findById(id);
 
         if (findOffer == null){
-            throw new ResourceNotFoundException("OfferId: " + id + " not found!");
-        }
-
-        if (!(Objects.equals(findOffer.getId(), id))){
             throw new PreConditionFailed("OfferId: " + id + " not found!");
         }
+
 
         offersRepository.save(offer);
         return offer;
@@ -78,4 +80,21 @@ public class OffersController {
         }
         offersRepository.deleteById(id);
     }
+
+//    @JsonView(Offer.Offer.class)
+    @GetMapping("/summary")
+    public MappingJacksonValue getOffersSummary() {
+        List<Offer> offers = offersRepository.findAll();
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept(
+                "id",
+                "title",
+                "status");
+
+        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("OfferFilter", filter);
+        MappingJacksonValue mjv = new MappingJacksonValue(offers);
+        mjv.setFilters(filterProvider);
+        return mjv;
+
+    }
+
 }

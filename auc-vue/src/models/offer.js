@@ -52,7 +52,7 @@ export class Offer {
         }
 
 
-        this.sellDate = new Date().toDateString()
+        this.sellDate = new Date().toISOString().slice(0, 10);
 
 
         this.valueHighestBid = Math.floor(Math.random() * 1000);
