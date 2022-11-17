@@ -11,6 +11,7 @@
         <router-link class="menu-link" to="/offers/overview32" exact-active-class="onpage">Offers details (comp)</router-link>
         <router-link class="menu-link" to="/offers/overview33" exact-active-class="onpage">Offers edit (router)</router-link>
         <router-link class="menu-link" to="/offers/overview34" exact-active-class="onpage">Offers edit (managed)</router-link>
+        <router-link class="menu-link" to="/offers/overview37" exact-active-class="onpage">Offers details (rest backend)</router-link>
       </div>
     </div>
     <a href="#news">My Account</a>

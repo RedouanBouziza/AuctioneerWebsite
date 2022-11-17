@@ -7,6 +7,8 @@ import Overview33 from "@/components/offers/Overview33";
 import Detail33 from "@/components/offers/Detail33";
 import Overview34 from "@/components/offers/Overview34";
 import Detail34 from "@/components/offers/Detail34";
+import Overview37 from "@/components/offers/Overview37";
+import Detail37 from "@/components/offers/Detail37";
 
 const routes = [
     {path: '/home', component: WelcomeVue},
@@ -18,6 +20,11 @@ const routes = [
     { path: '/offers/overview34', component: Overview34, children:[{
             path:':id', component: Detail34
         }]},
+    { path: '/offers/overview37', component: Overview37, children:[{
+            path:':id', component:Detail37
+        }]
+    },
+
     {path: '/', redirect: '/home'},
     {path: '/:unknown(.*)', component: UnknownRoute}
 ];
