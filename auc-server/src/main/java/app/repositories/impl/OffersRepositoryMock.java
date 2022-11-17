@@ -73,7 +73,7 @@ public class OffersRepositoryMock implements OffersRepository {
 
     @Override
     public void deleteById(long id) {
-        this.offerList = this.offerList.stream().filter(scooter -> !(Objects.equals(scooter.getId(), id))).collect(Collectors.toList());
+        this.offerList = this.offerList.stream().filter(offer -> !(Objects.equals(offer.getId(), id))).collect(Collectors.toList());
     }
 
 
