@@ -83,6 +83,7 @@ public class OffersController {
     }
 
     @JsonView(ViewClasses.Summary.class)
+    //asd
     @GetMapping("/summary")
     public MappingJacksonValue getOffersSummary() {
         List<Offer> offers = offersRepository.findAll();
