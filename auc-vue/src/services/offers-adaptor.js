@@ -18,19 +18,19 @@ export class OffersAdaptor {
     }
 
     async asyncFindAll(){
-        const offers = await this.fetchJson(this.resourcesUrl, 'GET');
+        const offers = await this.fetchJson(this.resourceUrl);
         return offers?.map(s => Offer.copyConstructor(s));
     }
 
     async asyncFindById(id){
-        const offer = await this.fetchJson(this.resourcesUrl + "/" + id, 'GET')
+        const offer = await this.fetchJson(this.resourceUrl + "/" + id, 'GET')
         return Offer.copyConstructor(offer)
     }
 
     async asyncSave(offer){
-        const offerParam = await this.fetchJson(this.resourcesUrl + "/" + offer.id, 'POST', offer)
+        const offerParam = await this.fetchJson(this.resourceUrl + "/" + offer.id, 'POST', offer)
     }
     async asyncDeleteById(id){
-        return await this.fetchJson(this.resourcesUrl + "/" + id, 'DELETE')
+        return await this.fetchJson(this.resourceUrl + "/" + id, 'DELETE')
     }
 }

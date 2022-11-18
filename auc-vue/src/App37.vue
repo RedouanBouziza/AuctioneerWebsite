@@ -18,7 +18,7 @@ export default {
   },
   provide() {
     return {
-      offerService: new OffersAdaptor(CONFIG.BACKEND_URL+"/offers"),
+      offersService: new OffersAdaptor(CONFIG.BACKEND_URL+"/offers"),
     }
   }
 
