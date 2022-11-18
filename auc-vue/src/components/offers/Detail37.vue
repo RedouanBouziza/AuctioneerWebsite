@@ -44,6 +44,7 @@ import {Offer} from "@/models/offer";
 
 export default {
   name: "Detail37Component",
+  inject: ['offersService'],
   props: ['offer'],
   emits: ['delete', 'saveOffer', 'deselect'],
   created() {

@@ -6,6 +6,8 @@
 
 <script>
 
+import {OffersAdaptor} from "@/services/offers-adaptor";
+import CONFIG from './app-config.js'
 import HeaderVue from './components/Header.vue'
 import NavbarVue from './components/Navbar.vue'
 
@@ -13,6 +15,11 @@ export default {
   name: "App37.vue",
   components: {
     HeaderVue, NavbarVue
+  },
+  provide() {
+    return {
+      offerService: new OffersAdaptor(CONFIG.BACKEND_URL+"/offers"),
+    }
   }
 
 }

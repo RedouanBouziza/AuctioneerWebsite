@@ -18,7 +18,7 @@ export class OffersAdaptor {
     }
 
     async asyncFindAll(){
-        const offers = await this.fetchJson(this.resourcesUrl);
+        const offers = await this.fetchJson(this.resourcesUrl, 'GET');
         return offers?.map(s => Offer.copyConstructor(s));
     }
 

@@ -29,6 +29,7 @@ import {Offer} from "@/models/offer";
 
 export default {
   name: "Overview37Component",
+  inject: ['offersService'],
 
   data() {
     return {
@@ -39,10 +40,12 @@ export default {
 
     }
   },
-  created() {
-    for (let i = 0; i < 8; i++) {
-      this.offers.push(Offer.createSampleOffer(this.lastId++))
-    }
+   async created() {
+    this.offers = await this.offersService.asyncFindAll();
+    this.selectedOffer = this.findSelectedFromRouteParams(this.$route);
+
+    // for (let i = 0; i < 8; i++) {
+    //   this.offers.push(Offer.createSampleOffer(this.lastId++))}
   },
   watch: {
     '$route'() {
