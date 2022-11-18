@@ -83,19 +83,9 @@ public class OffersController {
     }
 
     @JsonView(ViewClasses.Summary.class)
-    //asd
     @GetMapping("/summary")
-    public MappingJacksonValue getOffersSummary() {
-        List<Offer> offers = offersRepository.findAll();
-        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept(
-                "id",
-                "title",
-                "status");
-
-        FilterProvider filterProvider = new SimpleFilterProvider().addFilter("OfferFilter", filter);
-        MappingJacksonValue mjv = new MappingJacksonValue(offers);
-        mjv.setFilters(filterProvider);
-        return mjv;
+    public List<Offer> getOffersSummary() {
+        return offersRepository.findAll();
 
     }
 
