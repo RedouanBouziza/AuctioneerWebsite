@@ -1,17 +1,22 @@
 package app.models;
 
-
 import app.views.ViewClasses;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Random;
 import java.util.UUID;
 
+@Entity
 public class Offer {
 
     @JsonView(ViewClasses.Summary.class)
+    @Id
+    @GeneratedValue
     private long id;
     @JsonView(ViewClasses.Summary.class)
     private String title;
@@ -20,6 +25,10 @@ public class Offer {
     @JsonView(ViewClasses.Summary.class)
     private Status status;
     private double valueHighestBid;
+
+    public Offer() {
+
+    }
 
     public enum Status{
         FOR_SALE, WITHDRAWN, NEW
