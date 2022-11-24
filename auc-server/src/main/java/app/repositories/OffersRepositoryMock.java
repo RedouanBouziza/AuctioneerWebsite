@@ -1,7 +1,6 @@
-package app.repositories.impl;
+package app.repositories;
 
 import app.models.Offer;
-import app.repositories.OffersRepository;
 import org.springframework.stereotype.Component;
 import java.util.*;
 

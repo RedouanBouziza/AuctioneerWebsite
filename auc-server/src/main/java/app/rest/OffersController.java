@@ -3,7 +3,7 @@ package app.rest;
 import app.exceptions.PreConditionFailed;
 import app.exceptions.ResourceNotFoundException;
 import app.models.Offer;
-import app.repositories.OffersRepository;
+import app.repositories.EntityRepository;
 import app.views.ViewClasses;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import static app.models.Offer.Status.NEW;
 public class OffersController {
 
     @Autowired
-    private OffersRepository offersRepository;
+    EntityRepository<Offer> offersRepository;
 
     @GetMapping("/test")
     public List<Offer> getTestOffers(){
