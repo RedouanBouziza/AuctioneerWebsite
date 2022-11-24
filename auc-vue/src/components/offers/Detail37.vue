@@ -1,4 +1,5 @@
 <template>
+  <div v-if="copyOffer !== null">
   <div class="detailBox">
     <form v-if="copyOffer">
       <label class="labelOne" for="title">Title</label>
@@ -30,12 +31,13 @@
   </div>
   <div>
     <div class="form-buttons">
-      <button class="btn" @click="$emit('delete')" v-bind:disabled="offerModified">Delete</button>
+      <button class="btn" @click="deleteOffer">Delete</button>
       <button class="btn" @click="clearOffer">Clear</button>
-      <button class="btn" @click="resetSelection" v-bind:disabled="!offerModified">Reset</button>
+      <button class="btn" @click="resetSelection">Reset</button>
       <button class="btn" @click="cancelSelection">Cancel</button>
-      <button class="btn" @click="$emit('saveOffer', this.copyOffer)" v-bind:disabled="!offerModified">Save</button>
+      <button class="btn" @click="saveOffer">Save</button>
     </div>
+  </div>
   </div>
 </template>
 
@@ -46,9 +48,9 @@ export default {
   name: "Detail37Component",
   inject: ['offersService'],
   props: ['offer'],
-  emits: ['delete', 'saveOffer', 'deselect'],
-  created() {
-        this.initializeCopy();
+  emits: ['refresh'],
+  async created() {
+        await this.initializeCopy();
   },
   data() {
     return {
@@ -60,22 +62,30 @@ export default {
             this.initializeCopy();
         }
   },
-  computed: {
-    offerModified() {
-      return this.copyOffer.title !== this.offer.title ||
-          this.copyOffer.status !== this.offer.status ||
-          this.copyOffer.description !== this.offer.description ||
-          this.copyOffer.sellDate !== this.offer.sellDate ||
-          this.copyOffer.valueHighestBid !== this.offer.valueHighestBid;
-    },
-  },
+
     methods: {
-      initializeCopy() {
-        this.copyOffer = Offer.copyConstructor(this.offer);
+      async initializeCopy() {
+        this.selectedOffer = await this.offersService.asyncFindById(this.$route?.params?.id);
+        this.copyOffer = Offer.copyConstructor(this.selectedOffer);
       },
 
-      saveOffer() {
-        this.$emit('saveOffer', this.copyOffer);
+      async deleteOffer() {
+        if (confirm(`Do you really want to delete the offer?`)) {
+          await this.offersService.asyncDeleteById(this.selectedOffer.id);
+          this.copyOffer = null;
+          this.$emit('refresh');
+        }
+      },
+
+      async saveOffer() {
+        if (confirm(`Do you really want to delete the offer?`)) {
+          await this.offersService.asyncSave(this.copyOffer);
+          this.$router.push('/offers/overview37');
+          console.log("het werkt")
+          this.$emit('refresh');
+        } else {
+          console.log("HEt werkt neit")
+        }
       },
       clearOffer() {
         this.copyOffer.title = "";
@@ -88,7 +98,7 @@ export default {
         this.initializeCopy();
       },
       cancelSelection() {
-        this.$emit('deselect');
+        this.$router.push('/offers/overview37');
       }
     }
 }

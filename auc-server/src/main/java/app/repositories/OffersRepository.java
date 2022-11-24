@@ -13,5 +13,5 @@ public interface OffersRepository {
 
     Offer save(Offer offer);
 
-    void deleteById(long id);
+    Offer deleteById(long id);
 }

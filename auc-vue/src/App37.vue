@@ -16,11 +16,10 @@ export default {
   components: {
     HeaderVue, NavbarVue
   },
-  provide() {
-    return {
-      offersService: new OffersAdaptor(CONFIG.BACKEND_URL+"/offers"),
-    }
+  provide: {
+    offersService: new OffersAdaptor(CONFIG.BACKEND_URL+"/offers"),
   }
+
 
 }
 </script>

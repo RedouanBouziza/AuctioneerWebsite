@@ -5,7 +5,9 @@ import app.views.ViewClasses;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.Period;
+import java.util.Random;
+import java.util.UUID;
 
 public class Offer {
 
@@ -30,6 +32,30 @@ public class Offer {
         this.sellDate = sellDate;
         this.status = status;
         this.valueHighestBid = valueHighestBid;
+    }
+
+    public static Offer createSampleOffer(long id) {
+
+        double min = 0.0;
+        double max = 50.0;
+
+        final String title = UUID.randomUUID().toString().substring(0, 10);
+        final String description = "Some Article Sold at 202";
+        final LocalDate sellDate = LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70))));
+        final double valueHighestBid = (Math.random() * ((max - min) + 1)) + min;
+
+        return new Offer(id, title, description, sellDate, getRandomStatus(), valueHighestBid);
+    }
+
+    private static Offer.Status getRandomStatus() {
+        double randomNumber = Math.floor(Math.random() * 9);
+        // change status
+        if (randomNumber < 3) {
+            return Offer.Status.FOR_SALE;
+        } else if (randomNumber < 6 && randomNumber > 3) {
+            return Offer.Status.NEW;
+        }
+        return Offer.Status.WITHDRAWN;
     }
 
     public long getId() {
@@ -58,5 +84,25 @@ public class Offer {
 
     public double getValueHighestBid() {
         return valueHighestBid;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setSellDate(LocalDate sellDate) {
+        this.sellDate = sellDate;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setValueHighestBid(double valueHighestBid) {
+        this.valueHighestBid = valueHighestBid;
     }
 }

@@ -6,11 +6,8 @@ import app.models.Offer;
 import app.repositories.OffersRepository;
 import app.views.ViewClasses;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.ser.FilterProvider;
-import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
-import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,26 +57,27 @@ public class OffersController {
         return offer;
     }
 
-    @PutMapping("/{id}")
-    public Offer saveOffer(@PathVariable long id, @RequestBody Offer offer){
-        Offer findOffer = offersRepository.findById(id);
 
-        if (findOffer == null){
-            throw new PreConditionFailed("OfferId: " + id + " not found!");
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Offer> saveOffer(@PathVariable long id ,@RequestBody Offer offer) {
+
+        Offer savedOffer = offersRepository.save(offer);
+
+        if (id != offer.getId()) {
+            throw new PreConditionFailed("Offer id " + id + " does not match the id of the game in the body");
         }
 
-
-        offersRepository.save(offer);
-        return offer;
+        if (savedOffer != null) {
+            return ResponseEntity.ok().body(savedOffer);
+        } else throw new ResourceNotFoundException("Game with id " + id + " not found");
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOffer(@PathVariable long id){
-        Offer offer = offersRepository.findById(id);
-        if (offer == null){
-            throw new ResourceNotFoundException("OfferId: " + id + " not found!");
-        }
-        offersRepository.deleteById(id);
+    public ResponseEntity<Offer> deleteOffer(@PathVariable long id){
+        Offer offer = offersRepository.deleteById(id);
+        if (offer != null) {
+            return ResponseEntity.ok().body(offer);
+        } else throw new ResourceNotFoundException("Game with id " + id + " not found");
     }
 
     @JsonView(ViewClasses.Summary.class)

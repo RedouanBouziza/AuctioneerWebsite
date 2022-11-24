@@ -17,8 +17,7 @@
     </div>
     <div class="right-section">
       <p v-if="selectedOffer === null">Select a offer from the list at the left</p>
-      <router-view v-else :offer="getSelectedOffer()" @delete="deleteOffer(selectedOffer.title)"
-                   @saveOffer="saveOffer" @deselect="selectedOffer = null">
+      <router-view v-else v-on:refresh="this.onRefresh" :offer="getSelectedOffer()" @deselect="selectedOffer = null">
       </router-view>
     </div>
   </div>
@@ -42,33 +41,27 @@ export default {
   },
    async created() {
     this.offers = await this.offersService.asyncFindAll();
-    this.selectedOffer = this.findSelectedFromRouteParams(this.$route);
-
-    // for (let i = 0; i < 8; i++) {
-    //   this.offers.push(Offer.createSampleOffer(this.lastId++))}
+    await this.onRefresh()
   },
   watch: {
     '$route'() {
-      // extracts the selected offer-id from the route, each time when the route has changed
-      this.selectedOffer = this.findSelectedFromRouteParams(this.$route);
+      this.selectedOffer = this.findSelectedFromRouteParams(this.$route?.params?.id);
     }
   },
   methods: {
-    onNewOffer(){
-      let offer = Offer.createSampleOffer(this.lastId++);
-      this.offers.push(offer);
-      this.selectedOffer = offer;
-      console.log(this.selectedOffer)
-      this.$router.push(this.$route.matched[0].path + "/" + this.selectedOffer.id);
+    async onNewOffer(){
+      let newOffer = new Offer();
+      newOffer.id = 0;
+      await this.offersService.asyncSave(newOffer).then((offer) => {
+        this.$router.push(`/offers/detail37/${offer.id}`);
+        this.onSelect(offer)
+      });
 
-      // this.$router.push(('/overview34/' + this.selectedOffer.title))
+      await this.onRefresh();
     },
 
     onSelect(offer) {
       this.selectedId = offer.id;
-      console.log(offer)
-      console.log("dit is onselect")
-      // let parentPath = this.$route?.fullPath.replace(new RegExp("/\\d*$"), '');
       if (offer !== this.selectedOffer) {
         this.selectedOffer = offer;
         this.$router.push(this.$route.matched[0].path + "/" + offer.id);
@@ -78,26 +71,17 @@ export default {
       }
     },
 
-    deleteOffer(title){
-      if(confirm('Are you sure you want to delete this offer?')){
-        this.offers = this.offers.filter(offer => offer.title !== title)
-        this.selectedOffer = null
-        this.$router.push(this.$route.matched[0].path + "/")
-      }
+    async onRefresh() {
+      this.offers = await this.offersService.asyncFindAll();
+      this.selectedOffer = this.findSelectedFromRouteParams(this.$route?.params?.id);
     },
 
-    saveOffer(copyOffer){
-      let index = this.offers.findIndex(currentOffer => currentOffer.id === copyOffer.id);
-      this.offers[index] = copyOffer;
-      this.selectedOffer.title = copyOffer.title;
-      this.selectedOffer.status = copyOffer.status;
-      this.selectedOffer.description = copyOffer.description;
-      this.selectedOffer.sellDate = copyOffer.sellDate;
-      this.selectedOffer.valueHighestBid = copyOffer.valueHighestBid;
-    },
-
-    findSelectedFromRouteParams(route) {
-            return this.offers.find(value => value.id === parseInt(route.params.id)) ;
+    findSelectedFromRouteParams(id) {
+        if (id > 0) {
+          return this.offers.find(x => x.id === id);
+        } else {
+          return null;
+        }
     },
 
     getSelectedOffer() {
