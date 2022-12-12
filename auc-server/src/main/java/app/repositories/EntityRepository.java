@@ -13,6 +13,8 @@ public interface EntityRepository<E> {
     E save(E entity);
 
     E deleteById(long id);
+
+    List<E> findByQuery(String jpqlName, Object... params);
 }
 
 

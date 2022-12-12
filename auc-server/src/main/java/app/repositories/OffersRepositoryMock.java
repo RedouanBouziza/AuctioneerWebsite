@@ -20,8 +20,9 @@ public class OffersRepositoryMock implements OffersRepository {
         return this.offerList;
     }
 
+
     @Override
-    public Offer findById(long id) {
+    public Offer findByIdOffer(long id) {
         return this.offerList.stream().filter(offer -> Objects.equals(offer.getId(), id)).findFirst().orElse(null);
     }
 
@@ -38,11 +39,11 @@ public class OffersRepositoryMock implements OffersRepository {
             return offer;
         }
 
-        if (offer.getId() == 0 || this.findById(offer.getId()) == null) {
+        if (offer.getId() == 0 || this.findByIdOffer(offer.getId()) == null) {
             offer.setId(newId());
             this.offerList.add(offer);
         } else {
-            Offer offerToUpdate = findById(offer.getId());
+            Offer offerToUpdate = findByIdOffer(offer.getId());
             if (offerToUpdate != null) {
                 offerToUpdate.setTitle(offer.getTitle());
                 offerToUpdate.setDescription(offer.getDescription());
@@ -56,7 +57,7 @@ public class OffersRepositoryMock implements OffersRepository {
 
     @Override
     public Offer deleteById(long id) {
-        Offer offer = this.findById(id);
+        Offer offer = this.findByIdOffer(id);
         this.offerList.remove(offer);
         return offer;
     }
