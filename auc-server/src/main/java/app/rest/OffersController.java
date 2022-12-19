@@ -19,7 +19,6 @@ import java.util.UUID;
 
 import static app.models.Offer.Status.NEW;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/offers")
 public class OffersController {
@@ -44,14 +43,8 @@ public class OffersController {
             @RequestParam(name = "ValueHighestBid", required = false) Double valueHighestBid) {
 
         if (status != null) {
-            if (!status.equals("NEW") &&
-                    !status.equals("FOR_SALE") &&
-                    !status.equals("SOLD") &&
-                    !status.equals("PAID") &&
-                    !status.equals("DELIVERED") &&
-                    !status.equals("CLOSED") &&
-                    !status.equals("EXPIRED") &&
-                    !status.equals("WITHDRAWN")) {
+
+            if (!Offer.Status.isValid(status)) {
                 throw new BadRequest("Status: " + status + " is not a valid offer status");
             }
         }

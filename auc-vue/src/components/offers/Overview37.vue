@@ -17,6 +17,7 @@
     </div>
     <div class="right-section">
       <p v-if="selectedOffer === null">Select a offer from the list at the left</p>
+
       <router-view v-else v-on:refresh="this.onRefresh" :offer="getSelectedOffer()" @deselect="selectedOffer = null">
       </router-view>
     </div>

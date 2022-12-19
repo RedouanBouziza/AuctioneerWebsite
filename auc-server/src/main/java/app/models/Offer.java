@@ -1,7 +1,6 @@
 package app.models;
 
 import app.views.ViewClasses;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -37,8 +36,7 @@ public class Offer {
     private double valueHighestBid;
 
     @JsonManagedReference
-//    @JsonBackReference
-    @OneToMany(mappedBy="offers")
+    @OneToMany(mappedBy="offers", cascade = CascadeType.ALL)
     private List<Bid> bids = new ArrayList<>();
 
     public List<Bid> getBids() {
@@ -72,7 +70,16 @@ public class Offer {
 
 
     public enum Status{
-        NEW, FOR_SALE, SOLD, PAID, DELIVERED, CLOSED, EXPIRED, WITHDRAWN
+        NEW, FOR_SALE, SOLD, PAID, DELIVERED, CLOSED, EXPIRED, WITHDRAWN;
+
+        public static boolean isValid(String status) {
+            for (Status s : Status.values()) {
+                if (s.name().equals(status)) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public Offer(long id, String title, String description, LocalDate sellDate, Status status) {
@@ -81,7 +88,6 @@ public class Offer {
         this.description = description;
         this.sellDate = sellDate;
         this.status = status;
-//        this.valueHighestBid = valueHighestBid;
     }
 
     public static Offer createSampleOffer(long id) {

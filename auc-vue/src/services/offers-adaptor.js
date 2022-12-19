@@ -38,6 +38,7 @@ export class OffersAdaptor {
 
         return Offer.copyConstructor(offerParam)
     }
+
     async asyncDeleteById(id){
         const offerParam = await this.fetchJson(this.resourceUrl + "/" + id, {
             method: 'DELETE'
