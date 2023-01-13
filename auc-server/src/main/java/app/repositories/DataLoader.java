@@ -79,8 +79,6 @@ public class DataLoader implements CommandLineRunner {
         List<User> users = usersRepository.findAll();
 
         users.add(this.usersRepository.save(new User(0L, "user1", "user1@test.nl")));
-        System.out.println(users.get(0).toString());
-        System.out.println("DataLoader.createUsers 99999999999999999999999999999()");
         users.add(this.usersRepository.save(new User(0L, "user2", "user2@test.nl")));
         users.add(this.usersRepository.save(new User(0L, "user3", "user3@test.nl")));
         users.add(this.usersRepository.save(new User(0L, "user4", "user4@test.nl")));
